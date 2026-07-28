@@ -18,6 +18,7 @@
 #' \item \code{colour}
 #' \item \code{fill}
 #' \item \code{size}
+#' \item \code{linewidth}
 #' }
 #' The following aesthetics are unique to \code{geom_chernoff}:
 #' \itemize{
@@ -89,6 +90,7 @@ GeomChernoff <- ggproto(
     fill = NA,
     size = 4,
     alpha = 1,
+    linewidth = 0.5,
     smile = 1,
     brow = NA,
     nose = FALSE,
@@ -109,6 +111,7 @@ GeomChernoff <- ggproto(
           coords$colour[i],
           coords$fill[i],
           coords$alpha[i],
+          coords$linewidth[i],
           coords$smile[i],
           coords$brow[i],
           coords$nose[i],
@@ -126,6 +129,7 @@ GeomChernoff <- ggproto(
       data$colour,
       data$fill,
       data$alpha,
+      data$linewidth,
       data$smile,
       data$brow,
       data$nose,

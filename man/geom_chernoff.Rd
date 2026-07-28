@@ -124,6 +124,7 @@ By mapping to the relevant aesthetics, faces can appear to vary in happiness, an
 \item \code{colour}
 \item \code{fill}
 \item \code{size}
+\item \code{linewidth}
 }
 The following aesthetics are unique to \code{geom_chernoff}:
 \itemize{

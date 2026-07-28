@@ -11,6 +11,7 @@ chernoffGrob(
   colour = "black",
   fill = NA,
   alpha = 1,
+  linewidth = 0.5,
   smile = 1,
   brow = NA,
   nose = FALSE,
@@ -29,6 +30,8 @@ chernoffGrob(
 \item{fill}{fill colour}
 
 \item{alpha}{transparency, where 0 is transparent and 1 is opaque}
+
+\item{linewidth}{width of outlines and features, in millimetres}
 
 \item{smile}{amount of smiling/frowning}
 
