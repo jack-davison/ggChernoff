@@ -42,10 +42,10 @@ chernoffGrob(
 \item{eyes}{distance between the eyes}
 }
 \value{
-A \code{\link[grid]{grobTree}} object.
+A \code{\link[grid:grobTree]{grid::grobTree()}} object.
 }
 \description{
-Uses \code{\link[grid]{Grid}} graphics to draw a face.
+Uses \code{\link[grid:Grid]{grid::Grid()}} graphics to draw a face.
 }
 \examples{
 face <- chernoffGrob(
@@ -61,5 +61,5 @@ grid::grid.newpage()
 grid::grid.draw(face)
 }
 \seealso{
-\code{\link{geom_chernoff}}
+\code{\link[=geom_chernoff]{geom_chernoff()}}
 }

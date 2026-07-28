@@ -1,31 +1,37 @@
 #' Scales for angry eyebrows
 #'
-#' \code{scale_brow} lets you customise how eyebrows are generated from your data.
-#' It also lets you tweak the appearance of legends and so on.
-#' By default, \code{brow} is set to \code{NA}, in which case no eyebrows will appear (see Examples).
+#' `scale_brow` lets you customise how eyebrows are generated from your data. It
+#' also lets you tweak the appearance of legends and so on. By default, `brow`
+#' is set to `NA`, in which case no eyebrows will appear (see Examples).
 #'
-#' Use \code{range} to vary how angrily your maximum/minimum values are represented.
-#' Minima smaller than -1 and maxima greater than +1 are possible but might look odd!
-#' You can use \code{midpoint} to set a specific 'zero' value in your data or to have eyebrow angles represented as relative to average.
+#' Use `range` to vary how angrily your maximum/minimum values are represented.
+#' Minima smaller than -1 and maxima greater than +1 are possible but might look
+#' odd! You can use `midpoint` to set a specific 'zero' value in your data or to
+#' have eyebrow angles represented as relative to average.
 #'
-#' The function \code{scale_brow} is an alias of \code{scale_brow_continuous}.
-#' At some point we might also want to design a \code{scale_brow_discrete}, \code{scale_brow_manual} and so on.
+#' The function `scale_brow` is an alias of `scale_brow_continuous`. At some
+#' point we might also want to design a `scale_brow_discrete`,
+#' `scale_brow_manual` and so on.
 #'
-#' Legends are a work in progress. In particular, \code{size} mappings might produce odd results.
+#' Legends are a work in progress. In particular, `size` mappings might produce
+#' odd results.
 #'
-#' @param ... Other arguments passed onto \code{\link[ggplot2]{continuous_scale}} to control name, limits, breaks, labels and so forth.
-#' @param range Output range of eyebrow angles. +1 corresponds to very angry and -1 corresponds to a worried look.
-#' @param midpoint A value or function of your data that will return level eyebrows, i.e. \code{¦:-)}
+#' @param ... Other arguments passed onto [ggplot2::continuous_scale()] to
+#'   control name, limits, breaks, labels and so forth.
 #'
-#' @seealso \code{\link{geom_chernoff}}, \code{\link{scale_smile}}
+#' @param range Output range of eyebrow angles. +1 corresponds to very angry and
+#'   -1 corresponds to a worried look.
 #'
-#' @importFrom scales rescale_mid
+#' @param midpoint A value or function of your data that will return level
+#'   eyebrows, i.e. `¦:-)`
+#'
+#' @seealso [geom_chernoff()], [scale_smile()]
 #'
 #' @examples
 #' library(ggplot2)
 #' p <- ggplot(iris) +
-#'     aes(Sepal.Width, Sepal.Length, fill = Species, brow = Sepal.Length) +
-#'     geom_chernoff()
+#'   aes(Sepal.Width, Sepal.Length, fill = Species, brow = Sepal.Length) +
+#'   geom_chernoff()
 #' p
 #' p + scale_brow_continuous(midpoint = min)
 #' p + scale_brow_continuous(range = c(-0.5, 2))
@@ -33,18 +39,23 @@
 #' # Only show eyebrows if 'sad', otherwise hide them
 #' usa <- data.frame(date = c(time(presidents)), rating = c(presidents))
 #' ggplot(subset(usa, complete.cases(usa))) +
-#'     aes(date, rating, smile = rating, fill = rating,
-#'         brow = ifelse(rating < 50, rating, NA)) +
-#'     geom_line() +
-#'     geom_chernoff(show.legend = FALSE) +
-#'     scale_brow(range = -1:0) +
-#'     scale_fill_gradient(low = 'skyblue1', high = 'goldenrod1')
+#'   aes(
+#'     date,
+#'     rating,
+#'     smile = rating,
+#'     fill = rating,
+#'     brow = ifelse(rating < 50, rating, NA)
+#'   ) +
+#'   geom_line() +
+#'   geom_chernoff(show.legend = FALSE) +
+#'   scale_brow(range = -1:0) +
+#'   scale_fill_gradient(low = 'skyblue1', high = 'goldenrod1')
 #'
 #'
 #' @rdname scale_brow
 #'
-#' @return
-#' A \code{\link[ggplot2:continuous_scale]{Scale}} layer object for use with \code{ggplot2}.
+#' @return A [`Scale()`][ggplot2::continuous_scale] layer object for use with
+#' `ggplot2`.
 #'
 #' @export
 scale_brow_continuous <- function(..., range = c(-1, 1), midpoint = mean) {

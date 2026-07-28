@@ -1,37 +1,42 @@
 #' Scales for eye separation
 #'
-#' \code{scale_eyes} lets you customise how eye separation is determined from your data.
-#' It also lets you tweak the appearance of legends and so on.
+#' `scale_eyes` lets you customise how eye separation is determined from your
+#' data. It also lets you tweak the appearance of legends and so on.
 #'
-#' Use \code{range} to vary how happily/sadly your maximum/minimum values are represented.
-#' Minima smaller than -1 and maxima greater than +1 are possible but might look odd!
-#' You can use \code{midpoint} to set a specific 'zero' value in your data or to have eye width represented as relative to average.
+#' Use `range` to vary how happily/sadly your maximum/minimum values are
+#' represented. Minima smaller than -1 and maxima greater than +1 are possible
+#' but might look odd! You can use `midpoint` to set a specific 'zero' value in
+#' your data or to have eye width represented as relative to average.
 #'
-#' The function \code{scale_eyes} is an alias of \code{scale_eyes_continuous}.
+#' The function `scale_eyes` is an alias of `scale_eyes_continuous`.
 #'
-#' Legends are a work in progress. In particular, \code{size} mappings might produce odd results.
+#' Legends are a work in progress. In particular, `size` mappings might produce
+#' odd results.
 #'
-#' @param ... Other arguments passed onto \code{\link[ggplot2]{continuous_scale}} to control name, limits, breaks, labels and so forth.
-#' @param range Output range of eye distances. 0 corresponds to a cyclops and +1 to a 'normal' distance.
-#' @param midpoint A value or function of your data that will return a 'normal' separation
+#' @param ... Other arguments passed onto [ggplot2::continuous_scale()] to
+#'   control name, limits, breaks, labels and so forth.
 #'
-#' @seealso \code{\link{geom_chernoff}}, \code{\link{scale_brow}}, \code{\link{scale_smile}}
+#' @param range Output range of eye distances. 0 corresponds to a cyclops and +1
+#'   to a 'normal' distance.
 #'
-#' @importFrom scales rescale_mid
+#' @param midpoint A value or function of your data that will return a 'normal'
+#'   separation
+#'
+#' @seealso [geom_chernoff()], [scale_brow()], [scale_smile()]
 #'
 #' @examples
 #' library(ggplot2)
 #' p <- ggplot(iris) +
-#'     aes(Sepal.Width, Sepal.Length, fill = Species, eyes = Sepal.Length) +
-#'     geom_chernoff()
+#'   aes(Sepal.Width, Sepal.Length, fill = Species, eyes = Sepal.Length) +
+#'   geom_chernoff()
 #' p
 #' p + scale_eyes_continuous(midpoint = min)
 #' p + scale_eyes_continuous(range = c(0, 2))
 #'
 #' @rdname scale_eyes
 #'
-#' @return
-#' A \code{\link[ggplot2:continuous_scale]{Scale}} layer object for use with \code{ggplot2}.
+#' @return A [`Scale()`][ggplot2::continuous_scale] layer object for use with
+#' `ggplot2`.
 #'
 #' @export
 scale_eyes_continuous <- function(..., range = c(0.1, 2), midpoint = mean) {

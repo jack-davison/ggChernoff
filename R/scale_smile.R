@@ -1,38 +1,44 @@
 #' Scales for smiling and frowning
 #'
-#' \code{scale_smile} lets you customise how smiles are generated from your data.
-#' It also lets you tweak the appearance of legends and so on.
+#' `scale_smile` lets you customise how smiles are generated from your data. It
+#' also lets you tweak the appearance of legends and so on.
 #'
-#' Use \code{range} to vary how happily/sadly your maximum/minimum values are represented.
-#' Minima smaller than -1 and maxima greater than +1 are possible but might look odd!
-#' You can use \code{midpoint} to set a specific 'zero' value in your data or to have smiles represented as relative to average.
+#' Use `range` to vary how happily/sadly your maximum/minimum values are
+#' represented. Minima smaller than -1 and maxima greater than +1 are possible
+#' but might look odd! You can use `midpoint` to set a specific 'zero' value in
+#' your data or to have smiles represented as relative to average.
 #'
-#' The function \code{scale_smile} is an alias of \code{scale_smile_continuous}.
-#' At some point we might also want to design a \code{scale_smile_discrete}, \code{scale_smile_manual} and so on.
+#' The function `scale_smile` is an alias of `scale_smile_continuous`. At some
+#' point we might also want to design a `scale_smile_discrete`,
+#' `scale_smile_manual` and so on.
 #'
-#' Legends are a work in progress. In particular, \code{size} mappings might produce odd results.
+#' Legends are a work in progress. In particular, `size` mappings might produce
+#' odd results.
 #'
-#' @param ... Other arguments passed onto \code{\link[ggplot2]{continuous_scale}} to control name, limits, breaks, labels and so forth.
-#' @param range Output range of smiles. +1 corresponds to a full smile and -1 corresponds to a full frown.
-#' @param midpoint A value or function of your data that will return a neutral/straight face, i.e. \code{:-|}
+#' @param ... Other arguments passed onto [ggplot2::continuous_scale()] to
+#'   control name, limits, breaks, labels and so forth.
 #'
-#' @seealso \code{\link{geom_chernoff}}, \code{\link{scale_brow}}
+#' @param range Output range of smiles. +1 corresponds to a full smile and -1
+#'   corresponds to a full frown.
 #'
-#' @importFrom scales rescale_mid
+#' @param midpoint A value or function of your data that will return a
+#'   neutral/straight face, i.e. `:-|`
+#'
+#' @seealso [geom_chernoff()], [scale_brow()]
 #'
 #' @examples
 #' library(ggplot2)
 #' p <- ggplot(iris) +
-#'     aes(Sepal.Width, Sepal.Length, fill = Species, smile = Sepal.Length) +
-#'     geom_chernoff()
+#'   aes(Sepal.Width, Sepal.Length, fill = Species, smile = Sepal.Length) +
+#'   geom_chernoff()
 #' p
 #' p + scale_smile_continuous(midpoint = min)
 #' p + scale_smile_continuous(range = c(-0.5, 2))
 #'
 #' @rdname scale_smile
 #'
-#' @return
-#' A \code{\link[ggplot2:ggplot2-ggproto]{Scale}} layer object for use with \code{ggplot2}.
+#' @return A [`Scale()`][ggplot2::ggplot2-ggproto] layer object for use with
+#'   `ggplot2`.
 #'
 #' @export
 scale_smile_continuous <- function(..., range = c(-1, 1), midpoint = mean) {

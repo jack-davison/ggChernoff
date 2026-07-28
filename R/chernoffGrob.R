@@ -1,6 +1,6 @@
 #' Draw a smiley face
 #'
-#' Uses \code{\link[grid]{Grid}} graphics to draw a face.
+#' Uses [grid::Grid()] graphics to draw a face.
 #'
 #' @param x horizontal position
 #' @param y vertical position
@@ -14,9 +14,9 @@
 #' @param nose logical. Adds a nose to the face
 #' @param eyes distance between the eyes
 #'
-#' @return A \code{\link[grid]{grobTree}} object.
+#' @return A [grid::grobTree()] object.
 #'
-#' @seealso \code{\link{geom_chernoff}}
+#' @seealso [geom_chernoff()]
 #'
 #' @import grid
 #' @export

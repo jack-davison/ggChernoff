@@ -17,11 +17,10 @@ geom_chernoff(
 )
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2]{aes}} or
-\code{\link[ggplot2]{aes_}}. If specified and \code{inherit.aes = TRUE} (the
-default), is combined with the default mapping at the top level of the
-plot. You only need to supply \code{mapping} if there isn't a mapping
-defined for the plot.}
+\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}}. If specified and
+\code{inherit.aes = TRUE} (the default), it is combined with the default mapping
+at the top level of the plot. You must supply \code{mapping} if there is no plot
+mapping.}
 
 \item{data}{The data to be displayed in this layer. There are three
 options:
@@ -109,15 +108,18 @@ lists which parameters it can accept.
 }}
 }
 \value{
-A \code{\link[ggplot2:Geom]{Geom}} layer object for use with \code{ggplot2}.
+A \code{\link[ggplot2:Geom]{ggplot2::Geom()}} layer object for use with \code{ggplot2}.
 }
 \description{
-The Chernoff geom is used to create data visualisations in the shape of human-like faces.
-By mapping to the relevant aesthetics, faces can appear to vary in happiness, anger, size, colour and so on.
+The Chernoff geom is used to create data visualisations in the shape of
+human-like faces. By mapping to the relevant aesthetics, faces can appear to
+vary in happiness, anger, size, colour and so on.
 }
 \section{Aesthetics}{
 
-\code{geom_chernoff} understands the following aesthetics (required aesthetics are in bold):
+
+\code{geom_chernoff} understands the following aesthetics (required aesthetics
+are in bold):
 \itemize{
 \item \strong{\code{x}}
 \item \strong{\code{y}}
@@ -126,6 +128,7 @@ By mapping to the relevant aesthetics, faces can appear to vary in happiness, an
 \item \code{size}
 \item \code{linewidth}
 }
+
 The following aesthetics are unique to \code{geom_chernoff}:
 \itemize{
 \item \code{smile}
@@ -133,29 +136,34 @@ The following aesthetics are unique to \code{geom_chernoff}:
 \item \code{nose}
 \item \code{eyes}
 }
-For details, see \code{\link{chernoffGrob}}.
+
+For details, see \code{\link[=chernoffGrob]{chernoffGrob()}}.
 }
 
 \examples{
 library(ggplot2)
-ggplot(iris, aes(Sepal.Width, Sepal.Length, smile = Petal.Length, fill = Species)) +
+ggplot(
+  iris,
+  aes(Sepal.Width, Sepal.Length, smile = Petal.Length, fill = Species)
+) +
   geom_chernoff()
 
-ggplot(data.frame(x = 1:4,
-                  y = c(3:1, 2.5),
-                  z = factor(1:4),
-                  w = rnorm(4),
-                  n = c(rep(FALSE, 3), TRUE)
-                  )) +
-    aes(x, y, fill = z, size = x, nose = n, smile = w) +
-    geom_chernoff()
+ggplot(data.frame(
+  x = 1:4,
+  y = c(3:1, 2.5),
+  z = factor(1:4),
+  w = rnorm(4),
+  n = c(rep(FALSE, 3), TRUE)
+)) +
+  aes(x, y, fill = z, size = x, nose = n, smile = w) +
+  geom_chernoff()
 
 }
 \references{
-Chernoff, H. (1973).
-The use of faces to represent points in \emph{k}-dimensional space graphically.
+Chernoff, H. (1973). The use of faces to represent points in
+\emph{k}-dimensional space graphically.
 \emph{Journal of the American Statistical Association, 68}(342), 361–368.
 }
 \seealso{
-\code{\link{chernoffGrob}}
+\code{\link[=chernoffGrob]{chernoffGrob()}}
 }
