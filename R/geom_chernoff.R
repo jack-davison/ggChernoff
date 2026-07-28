@@ -96,8 +96,8 @@ GeomChernoff <- ggproto(
     nose = FALSE,
     eyes = 1
   ),
-  draw_panel = function(data, panel_scales, coord) {
-    coords <- coord$transform(data, panel_scales)
+  draw_panel = function(data, panel_params, coord) {
+    coords <- coord$transform(data, panel_params)
     gl <- grobTree()
     for (i in seq_along(coords$x)) {
       # Filthy hack: draw one whole face at a time
