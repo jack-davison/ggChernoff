@@ -1,12 +1,14 @@
 # ggChernoff (development version)
 
-* Bumped the minimum required version of ggplot2 to 4.0.0, and made `colour`, `fill` and `linewidth` in `GeomChernoff$default_aes` theme-driven via `ggplot2::from_theme()`, so they can be set globally with `theme(geom = element_geom(...))` like ggplot2's own geoms.
+* Bumped the minimum required version of ggplot2 to 4.0.0, and made `colour`, `fill`, `size` and `linewidth` in `GeomChernoff$default_aes` theme-driven via `ggplot2::from_theme()`, so they can be set globally with `theme(geom = element_geom(...))` like ggplot2's own geoms.
 
 * Exported the `GeomChernoff` ggproto object, in line with the convention used by other 'ggplot2' extension packages, so it can be extended by other packages.
   
 * Added a `linewidth` aesthetic to `geom_chernoff()`/`chernoffGrob()`, which controls the stroke width of the face outline and features (previously `linewidth` was silently ignored).
   
 * Fixed deprecation warnings from `scale_smile()`, `scale_brow()` and `scale_eyes()` caused by passing the now-deprecated `scale_name` argument to `continuous_scale()`.
+
+* `alpha` in `geom_chernoff()` now defaults to `NA`. Therefore if `colour` is defined with an `alpha` channel (e.g., `"#FF000F20"`) it will now be retained rather than overwritten.
 
 # ggChernoff 0.3.0
 

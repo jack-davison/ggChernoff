@@ -91,7 +91,7 @@ GeomChernoff <- ggproto(
     colour = from_theme(colour %||% ink),
     fill = from_theme(fill %||% NA),
     size = 4,
-    alpha = 1,
+    alpha = NA,
     linewidth = from_theme(borderwidth),
     smile = 1,
     brow = NA,

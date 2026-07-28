@@ -10,7 +10,7 @@ chernoffGrob(
   size = 1,
   colour = "black",
   fill = NA,
-  alpha = 1,
+  alpha = NA,
   linewidth = 0.5,
   smile = 1,
   brow = NA,
@@ -29,7 +29,9 @@ chernoffGrob(
 
 \item{fill}{fill colour}
 
-\item{alpha}{transparency, where 0 is transparent and 1 is opaque}
+\item{alpha}{transparency, where 0 is transparent and 1 is opaque. Defaults
+to \code{NA}, which leaves the alpha channel already encoded in \code{colour}/\code{fill}
+untouched}
 
 \item{linewidth}{width of outlines and features, in millimetres}
 

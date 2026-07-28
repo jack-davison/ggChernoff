@@ -7,7 +7,9 @@
 #' @param size area of the face
 #' @param colour colour of outlines and features
 #' @param fill fill colour
-#' @param alpha transparency, where 0 is transparent and 1 is opaque
+#' @param alpha transparency, where 0 is transparent and 1 is opaque. Defaults
+#'   to `NA`, which leaves the alpha channel already encoded in `colour`/`fill`
+#'   untouched
 #' @param linewidth width of outlines and features, in millimetres
 #' @param smile amount of smiling/frowning
 #' @param brow eyebrow angle, to represent anger or concern
@@ -39,7 +41,7 @@ chernoffGrob <- function(
   size = 1,
   colour = 'black',
   fill = NA,
-  alpha = 1,
+  alpha = NA,
   linewidth = 0.5,
   smile = 1,
   brow = NA,
@@ -47,6 +49,8 @@ chernoffGrob <- function(
   eyes = 1
 ) {
   .pt <- ggplot2::.pt
+  colour <- scales::alpha(colour, alpha)
+  fill <- scales::alpha(fill, alpha)
   faceGrob <- circleGrob(x, y, r = unit(sqrt(0.5 * size * .pt), 'mm'))
   vp1 <- viewport(
     x = x,
@@ -90,6 +94,6 @@ chernoffGrob <- function(
     eyesGrob,
     browGrob,
     mouthGrob,
-    gp = gpar(alpha = alpha, col = colour, fill = fill, lwd = linewidth * .pt)
+    gp = gpar(col = colour, fill = fill, lwd = linewidth * .pt)
   )
 }
