@@ -78,7 +78,7 @@ g
 ![](README-legends-1.png)<!-- -->
 
 ``` r
-g + scale_smile_continuous('Smilez', breaks = 0:10/10, midpoint = .5)
+g + scale_smile_continuous('Smilez', breaks = 0:10/10, midpoint = 0.5)
 ```
 
 ![](README-legends-2.png)<!-- -->
@@ -117,7 +117,7 @@ ufos <- data.frame(x = rep(seq(-6, 6, length.out = 12), 5),
                    brow = rnorm(60))
 ggplot(ufos) +
   aes(x, y, fill = colour, size = size) +
-  geom_chernoff(smile = -1, aes(brow = brow), eyes = .5) +
+  geom_chernoff(smile = -1, aes(brow = brow), eyes = 0.5) +
   geom_chernoff(data = cannon) +
   geom_tile(data = bunkers, width = 1) +
   geom_tile(data = data.frame(x = 0, y = 3, colour = 'white', size = 2), width = .1) +

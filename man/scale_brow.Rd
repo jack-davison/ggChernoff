@@ -41,7 +41,7 @@ p <- ggplot(iris) +
     geom_chernoff()
 p
 p + scale_brow_continuous(midpoint = min)
-p + scale_brow_continuous(range = c(-.5, 2))
+p + scale_brow_continuous(range = c(-0.5, 2))
 
 # Only show eyebrows if 'sad', otherwise hide them
 usa <- data.frame(date = c(time(presidents)), rating = c(presidents))

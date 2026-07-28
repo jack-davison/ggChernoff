@@ -90,7 +90,6 @@ GeomChernoff <- ggproto(
     nose = FALSE,
     eyes = 1
   ),
-  draw_key = ggplot2::draw_key_rect,
   draw_panel = function(data, panel_scales, coord) {
     coords <- coord$transform(data, panel_scales)
     gl <- grobTree()
@@ -117,8 +116,8 @@ GeomChernoff <- ggproto(
   },
   draw_key = function(data, params, size) {
     chernoffGrob(
-      x = .5,
-      y = .5,
+      x = 0.5,
+      y = 0.5,
       data$size,
       data$colour,
       data$fill,

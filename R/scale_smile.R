@@ -27,7 +27,7 @@
 #'     geom_chernoff()
 #' p
 #' p + scale_smile_continuous(midpoint = min)
-#' p + scale_smile_continuous(range = c(-.5, 2))
+#' p + scale_smile_continuous(range = c(-0.5, 2))
 #'
 #' @rdname scale_smile
 #'

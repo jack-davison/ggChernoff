@@ -21,12 +21,12 @@
 #' @export
 #'
 #' @examples
-#' face <- chernoffGrob(.5, .5, size = 1e3, smile = -1, brow = 1, colour = 'navy', fill = 'lightblue')
+#' face <- chernoffGrob(0.5, 0.5, size = 1e3, smile = -1, brow = 1, colour = 'navy', fill = 'lightblue')
 #' grid::grid.newpage()
 #' grid::grid.draw(face)
 chernoffGrob <- function(
-  x = .5,
-  y = .5,
+  x = 0.5,
+  y = 0.5,
   size = 1,
   colour = 'black',
   fill = NA,
@@ -37,7 +37,7 @@ chernoffGrob <- function(
   eyes = 1
 ) {
   .pt <- 72.27 / 25.4
-  faceGrob <- circleGrob(x, y, r = unit(sqrt(.5 * size * .pt), 'mm'))
+  faceGrob <- circleGrob(x, y, r = unit(sqrt(0.5 * size * .pt), 'mm'))
   vp1 <- viewport(
     x = x,
     y = y,
@@ -45,16 +45,16 @@ chernoffGrob <- function(
     height = grobHeight(faceGrob)
   )
   eyesGrob <- circleGrob(
-    rep(0.5 + eyes * c(-.2, +.2), each = length(x)),
-    .6,
+    rep(0.5 + eyes * c(-0.2, +0.2), each = length(x)),
+    0.6,
     r = 1 / 20,
     gp = gpar(fill = colour),
     vp = vp1
   )
   if (!is.na(brow)) {
     browGrob <- polylineGrob(
-      x = c(.2, .4, .6, .8),
-      y = .75 + brow * c(+.05, -.05, -.05, +.05), # .7--.8
+      x = c(0.2, 0.4, 0.6, 0.8),
+      y = 0.75 + brow * c(+0.05, -0.05, -0.05, +0.05), # .7--.8
       id = rep(1:2, each = 2),
       gp = gpar(col = colour),
       vp = vp1
@@ -68,8 +68,8 @@ chernoffGrob <- function(
     vp = vp1
   )
   mouthGrob <- bezierGrob(
-    rep(.5, each = 4) + c(-.25, -.1, .1, .25),
-    rep(.28, each = 4) + smile * c(.08, -.12, -.12, .08),
+    rep(0.5, each = 4) + c(-0.25, -0.1, 0.1, 0.25),
+    rep(0.28, each = 4) + smile * c(0.08, -0.12, -0.12, 0.08),
     gp = gpar(fill = colour),
     id.lengths = rep(4, length(x)),
     vp = vp1
