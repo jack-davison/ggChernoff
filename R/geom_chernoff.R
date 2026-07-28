@@ -76,6 +76,10 @@ geom_chernoff <- function(
   )
 }
 
+#' @rdname geom_chernoff
+#' @format NULL
+#' @usage NULL
+#' @export
 GeomChernoff <- ggproto(
   "GeomChernoff",
   ggplot2::Geom,

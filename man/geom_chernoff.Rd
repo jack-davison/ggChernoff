@@ -2,6 +2,7 @@
 % Please edit documentation in R/geom_chernoff.R
 \name{geom_chernoff}
 \alias{geom_chernoff}
+\alias{GeomChernoff}
 \title{Chernoff faces in ggplot2}
 \usage{
 geom_chernoff(
