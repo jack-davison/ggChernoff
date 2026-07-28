@@ -8,15 +8,17 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-",
+  fig.path = "man/figures/README-",
   dev.args = list(type = "cairo") # for anti-aliasing
 )
 ```
 
-# Draw Chernoff faces in ggplot2
+# ggChernoff: draw Chernoff faces in ggplot2
 
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Selbosh/ggChernoff?branch=master&svg=true)](https://ci.appveyor.com/project/Selbosh/ggChernoff)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/Selbosh/ggChernoff/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Selbosh/ggChernoff/actions/workflows/R-CMD-check.yaml)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ggChernoff)](https://cran.r-project.org/package=ggChernoff)
+<!-- badges: end -->
 
 This silly package, `ggChernoff`, introduces a `geom_chernoff` geom for [`ggplot2`](http://ggplot2.org).
 This works a bit like [`geom_point`](http://docs.ggplot2.org/current/geom_point.html),
@@ -30,21 +32,30 @@ If `smile` is unmapped to a variable, all faces will be happy by default.
 Eyebrows are hidden by default, but you can activate them by mapping something to the `brow` aesthetic.
 High values make your faces angry :angry: and low values the opposite :anguished:.
 
-## Getting started
+## Installation
 
-Install the package using
+You can install the release version of ggChernoff using:
+
 ```r
-devtools::install_github('Selbosh/ggChernoff')
+install.packages("ggChernoff")
 ```
-and then load it using
+
+You can install the development version of ggChernoff like so:
+
+``` r
+# install.packages("pak")
+pak::pak('Selbosh/ggChernoff')
+```
+
+## Examples
+
 ```{r load}
 library(ggplot2)
 library(ggChernoff)
 ```
 
-## Examples
-
 Firstly, let's create a scatter plot of smiley faces out of Fisher's iris data set, each one coloured according to species.
+
 ```{r iris}
 ggplot(iris) +
   aes(Petal.Width, Petal.Length, fill = Species) +
@@ -52,6 +63,7 @@ ggplot(iris) +
 ```
 
 Here is an example using Immer's barley data. We are happy about larger yields!
+
 ```{r barley}
 ggplot(lattice::barley) +
   aes(year, variety, smile = yield, brow = yield) +
@@ -89,7 +101,9 @@ ggplot(iris) +
 
 ```{r spaceinvaders}
 cannon <- data.frame(x = 0, y = 0, colour = 'white', size = 20)
-bunkers <- data.frame(x = seq(-4, 4, l = 4), y = 2, colour = 'green', size = 1)
+
+bunkers <- data.frame(x = seq(-4, 4, l = 4), y = 2, colour = 'green')
+
 ufos <- data.frame(
   x = rep(seq(-6, 6, length.out = 12), 5),
   y = rep(6:10, each = 12),
@@ -105,13 +119,19 @@ ufos <- data.frame(
   ],
   brow = rnorm(60)
 )
-ggplot(ufos) +
-  aes(x, y, fill = colour, size = size) +
-  geom_chernoff(smile = -1, aes(brow = brow), eyes = 0.5) +
-  geom_chernoff(data = cannon) +
+
+ggplot() +
+  aes(x, y, fill = colour) +
+  geom_chernoff(
+    data = ufos,
+    aes(size = size, brow = brow),
+    smile = -1,
+    eyes = 0.5
+  ) +
+  geom_chernoff(data = cannon, aes(size = size)) +
   geom_tile(data = bunkers, width = 1) +
   geom_tile(
-    data = data.frame(x = 0, y = 3, colour = 'white', size = 2),
+    data = data.frame(x = 0, y = 3, colour = 'white'),
     width = 0.1
   ) +
   scale_fill_identity() +
@@ -124,6 +144,7 @@ ggplot(ufos) +
 ```
 
 ## References
+
 Hermann Chernoff (1973).
 The use of faces to represent points in *k*-dimensional space graphically.
 *Journal of the American Statistical Association, 68*(342), 361–368.

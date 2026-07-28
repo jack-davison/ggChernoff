@@ -36,17 +36,17 @@
 #' grid::grid.newpage()
 #' grid::grid.draw(face)
 chernoffGrob <- function(
-  x = 0.5,
-  y = 0.5,
-  size = 1,
-  colour = 'black',
-  fill = NA,
-  alpha = NA,
-  linewidth = 0.5,
-  smile = 1,
-  brow = NA,
-  nose = FALSE,
-  eyes = 1
+    x = 0.5,
+    y = 0.5,
+    size = 1,
+    colour = 'black',
+    fill = NA,
+    alpha = NA,
+    linewidth = 0.5,
+    smile = 1,
+    brow = NA,
+    nose = FALSE,
+    eyes = 1
 ) {
   .pt <- ggplot2::.pt
   colour <- scales::alpha(colour, alpha)

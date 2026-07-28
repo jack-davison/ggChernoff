@@ -1,11 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Draw Chernoff faces in ggplot2
+# ggChernoff: draw Chernoff faces in ggplot2
 
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/Selbosh/ggChernoff?branch=master&svg=true)](https://ci.appveyor.com/project/Selbosh/ggChernoff)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ggChernoff)](https://cran.r-project.org/package=ggChernoff)
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/Selbosh/ggChernoff/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Selbosh/ggChernoff/actions/workflows/R-CMD-check.yaml)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ggChernoff)](https://cran.r-project.org/package=ggChernoff)
+<!-- badges: end -->
 
 This silly package, `ggChernoff`, introduces a `geom_chernoff` geom for
 [`ggplot2`](http://ggplot2.org). This works a bit like
@@ -24,46 +26,51 @@ Eyebrows are hidden by default, but you can activate them by mapping
 something to the `brow` aesthetic. High values make your faces angry
 :angry: and low values the opposite :anguished:.
 
-## Getting started
+## Installation
 
-Install the package using
+You can install the release version of ggChernoff using:
 
 ``` r
-devtools::install_github('Selbosh/ggChernoff')
+install.packages("ggChernoff")
 ```
 
-and then load it using
+You can install the development version of ggChernoff like so:
 
 ``` r
-library(ggChernoff)
+# install.packages("pak")
+pak::pak('Selbosh/ggChernoff')
 ```
 
 ## Examples
+
+``` r
+library(ggplot2)
+library(ggChernoff)
+```
 
 Firstly, let’s create a scatter plot of smiley faces out of Fisher’s
 iris data set, each one coloured according to species.
 
 ``` r
-library(ggplot2)
 ggplot(iris) +
   aes(Petal.Width, Petal.Length, fill = Species) +
   geom_chernoff()
 ```
 
-![](README-iris-1.png)<!-- -->
+![](man/figures/README-iris-1.png)<!-- -->
 
 Here is an example using Immer’s barley data. We are happy about larger
-yields\!
+yields!
 
 ``` r
 ggplot(lattice::barley) +
   aes(year, variety, smile = yield, brow = yield) +
   geom_chernoff(fill = 'goldenrod1') +
   scale_x_discrete(limits = c('1931', '1932')) +
-  facet_wrap(~ site)
+  facet_wrap(~site)
 ```
 
-![](README-barley-1.png)<!-- -->
+![](man/figures/README-barley-1.png)<!-- -->
 
 Basic legends are now supported. We can customise breaks and titles in
 the usual `ggplot2` way, via `scale_smile_continuous`.
@@ -75,13 +82,13 @@ g <- ggplot(data.frame(x = rnorm(20), y = rexp(20), z = runif(20))) +
 g
 ```
 
-![](README-legends-1.png)<!-- -->
+![](man/figures/README-legends-1.png)<!-- -->
 
 ``` r
-g + scale_smile_continuous('Smilez', breaks = 0:10/10, midpoint = 0.5)
+g + scale_smile_continuous('Smilez', breaks = 0:10 / 10, midpoint = 0.5)
 ```
 
-![](README-legends-2.png)<!-- -->
+![](man/figures/README-legends-2.png)<!-- -->
 
 You can also use this command to adjust the range of possible
 happiness/sadness in your plot. In the following example, everybody is
@@ -91,7 +98,7 @@ somewhere between sad and straight-faced.
 g + scale_smile_continuous(range = c(-1, 0))
 ```
 
-![](README-range-1.png)<!-- -->
+![](man/figures/README-range-1.png)<!-- -->
 
 **New feature as of 0.3.0**: eye separation.
 
@@ -102,35 +109,55 @@ ggplot(iris) +
   scale_eyes_continuous(range = c(0, 2))
 ```
 
-![](README-eyes-1.png)<!-- -->
+![](man/figures/README-eyes-1.png)<!-- -->
 
-## Space invaders\! :alien:
+## Space invaders! :alien:
 
 ``` r
 cannon <- data.frame(x = 0, y = 0, colour = 'white', size = 20)
-bunkers <- data.frame(x = seq(-4, 4, l = 4), y = 2, colour = 'green', size = 1)
-ufos <- data.frame(x = rep(seq(-6, 6, length.out = 12), 5),
-                   y = rep(6:10, each = 12), size = 10,
-                   colour = c('cyan', 'yellow', 'magenta')[
-                     c(rep(1:3,4), rep(c(2,3,1),4), rep(c(3,1,2),4), rep(1:3,4), rep(c(2,3,1),4))
-                     ],
-                   brow = rnorm(60))
-ggplot(ufos) +
-  aes(x, y, fill = colour, size = size) +
-  geom_chernoff(smile = -1, aes(brow = brow), eyes = 0.5) +
-  geom_chernoff(data = cannon) +
+
+bunkers <- data.frame(x = seq(-4, 4, l = 4), y = 2, colour = 'green')
+
+ufos <- data.frame(
+  x = rep(seq(-6, 6, length.out = 12), 5),
+  y = rep(6:10, each = 12),
+  size = 10,
+  colour = c('cyan', 'yellow', 'magenta')[
+    c(
+      rep(1:3, 4),
+      rep(c(2, 3, 1), 4),
+      rep(c(3, 1, 2), 4),
+      rep(1:3, 4),
+      rep(c(2, 3, 1), 4)
+    )
+  ],
+  brow = rnorm(60)
+)
+
+ggplot() +
+  aes(x, y, fill = colour) +
+  geom_chernoff(
+    data = ufos,
+    aes(size = size, brow = brow),
+    smile = -1,
+    eyes = 0.5
+  ) +
+  geom_chernoff(data = cannon, aes(size = size)) +
   geom_tile(data = bunkers, width = 1) +
-  geom_tile(data = data.frame(x = 0, y = 3, colour = 'white', size = 2), width = .1) +
+  geom_tile(
+    data = data.frame(x = 0, y = 3, colour = 'white'),
+    width = 0.1
+  ) +
   scale_fill_identity() +
   scale_size_identity() +
   theme_void() +
-  theme(plot.background = element_rect(fill = 'black'),
-        legend.position = 'none')
-#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `linewidth` instead.
+  theme(
+    plot.background = element_rect(fill = 'black'),
+    legend.position = 'none'
+  )
 ```
 
-![](README-spaceinvaders-1.png)<!-- -->
+![](man/figures/README-spaceinvaders-1.png)<!-- -->
 
 ## References
 

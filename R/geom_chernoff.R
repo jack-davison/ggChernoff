@@ -58,14 +58,14 @@
 #' @import ggplot2
 #' @export
 geom_chernoff <- function(
-  mapping = NULL,
-  data = NULL,
-  stat = "identity",
-  position = "identity",
-  na.rm = FALSE,
-  show.legend = NA,
-  inherit.aes = TRUE,
-  ...
+    mapping = NULL,
+    data = NULL,
+    stat = "identity",
+    position = "identity",
+    na.rm = FALSE,
+    show.legend = NA,
+    inherit.aes = TRUE,
+    ...
 ) {
   layer(
     geom = GeomChernoff,
