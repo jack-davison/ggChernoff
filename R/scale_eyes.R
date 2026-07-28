@@ -42,8 +42,7 @@ scale_eyes_continuous <- function(..., range = c(0.1, 2), midpoint = mean) {
   }
   continuous_scale(
     'eyes',
-    'eyes_c',
-    function(x) {
+    palette = function(x) {
       scales::rescale_mid(x, to = range, mid = neutral(x, na.rm = TRUE))
     },
     ...,

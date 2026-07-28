@@ -43,8 +43,7 @@ scale_smile_continuous <- function(..., range = c(-1, 1), midpoint = mean) {
   }
   continuous_scale(
     'smile',
-    'smile_c',
-    function(x) {
+    palette = function(x) {
       scales::rescale_mid(x, to = range, mid = neutral(x, na.rm = TRUE))
     },
     ...,
