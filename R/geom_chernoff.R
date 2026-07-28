@@ -48,55 +48,85 @@
 #' \emph{Journal of the American Statistical Association, 68}(342), 361–368.
 #'
 #' @seealso \code{\link{chernoffGrob}}
-#' 
+#'
 #' @return
 #' A \code{\link[ggplot2:Geom]{Geom}} layer object for use with \code{ggplot2}.
 #'
 #' @import ggplot2
 #' @export geom_chernoff
-geom_chernoff <- function(mapping = NULL, data = NULL, stat = "identity",
-                          position = "identity", na.rm = FALSE, show.legend = NA,
-                          inherit.aes = TRUE, ...) {
-  layer(geom = GeomChernoff, mapping = mapping, data = data, stat = stat,
-        position = position, show.legend = show.legend, inherit.aes = inherit.aes,
-        params = list(na.rm = na.rm, ...)
-        )
+geom_chernoff <- function(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE,
+  ...
+) {
+  layer(
+    geom = GeomChernoff,
+    mapping = mapping,
+    data = data,
+    stat = stat,
+    position = position,
+    show.legend = show.legend,
+    inherit.aes = inherit.aes,
+    params = list(na.rm = na.rm, ...)
+  )
 }
 
-GeomChernoff <- ggproto("GeomChernoff", ggplot2::Geom,
+GeomChernoff <- ggproto(
+  "GeomChernoff",
+  ggplot2::Geom,
   required_aes = c("x", "y"),
-  default_aes = aes(colour = "black", fill = NA, size = 4, alpha = 1, smile = 1, brow = NA, nose = FALSE,
-                    eyes = 1),
+  default_aes = aes(
+    colour = "black",
+    fill = NA,
+    size = 4,
+    alpha = 1,
+    smile = 1,
+    brow = NA,
+    nose = FALSE,
+    eyes = 1
+  ),
   draw_key = ggplot2::draw_key_rect,
   draw_panel = function(data, panel_scales, coord) {
-      coords <- coord$transform(data, panel_scales)
-      gl <- grobTree()
-      for (i in seq_along(coords$x)) {
-        # Filthy hack: draw one whole face at a time
-        # so overlapping faces are rendered correctly.
-        gl <- addGrob(gl, chernoffGrob(coords$x[i],
-                                       coords$y[i],
-                                       coords$size[i],
-                                       coords$colour[i],
-                                       coords$fill[i],
-                                       coords$alpha[i],
-                                       coords$smile[i],
-                                       coords$brow[i],
-                                       coords$nose[i],
-                                       coords$eyes[i])
-                      )
-      }
-      return(gl)
+    coords <- coord$transform(data, panel_scales)
+    gl <- grobTree()
+    for (i in seq_along(coords$x)) {
+      # Filthy hack: draw one whole face at a time
+      # so overlapping faces are rendered correctly.
+      gl <- addGrob(
+        gl,
+        chernoffGrob(
+          coords$x[i],
+          coords$y[i],
+          coords$size[i],
+          coords$colour[i],
+          coords$fill[i],
+          coords$alpha[i],
+          coords$smile[i],
+          coords$brow[i],
+          coords$nose[i],
+          coords$eyes[i]
+        )
+      )
+    }
+    return(gl)
   },
   draw_key = function(data, params, size) {
-    chernoffGrob(x = .5, y = .5,
-                 data$size,
-                 data$colour,
-                 data$fill,
-                 data$alpha,
-                 data$smile,
-                 data$brow,
-                 data$nose,
-                 data$eyes)
+    chernoffGrob(
+      x = .5,
+      y = .5,
+      data$size,
+      data$colour,
+      data$fill,
+      data$alpha,
+      data$smile,
+      data$brow,
+      data$nose,
+      data$eyes
+    )
   }
 )

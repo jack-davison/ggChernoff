@@ -30,7 +30,7 @@
 #' p + scale_smile_continuous(range = c(-.5, 2))
 #'
 #' @rdname scale_smile
-#' 
+#'
 #' @return
 #' A \code{\link[ggplot2:ggplot2-ggproto]{Scale}} layer object for use with \code{ggplot2}.
 #'
@@ -41,9 +41,15 @@ scale_smile_continuous <- function(..., range = c(-1, 1), midpoint = mean) {
   } else {
     neutral <- match.fun(midpoint)
   }
-  continuous_scale('smile', 'smile_c',
-                   function(x) scales::rescale_mid(x, to = range, mid = neutral(x, na.rm = TRUE)),
-                   ..., na.value = 1)
+  continuous_scale(
+    'smile',
+    'smile_c',
+    function(x) {
+      scales::rescale_mid(x, to = range, mid = neutral(x, na.rm = TRUE))
+    },
+    ...,
+    na.value = 1
+  )
 }
 
 #' @rdname scale_smile

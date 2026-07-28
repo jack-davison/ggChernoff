@@ -42,7 +42,7 @@
 #'
 #'
 #' @rdname scale_brow
-#' 
+#'
 #' @return
 #' A \code{\link[ggplot2:continuous_scale]{Scale}} layer object for use with \code{ggplot2}.
 #'
@@ -53,9 +53,15 @@ scale_brow_continuous <- function(..., range = c(-1, 1), midpoint = mean) {
   } else {
     neutral <- match.fun(midpoint)
   }
-  continuous_scale('brow', 'brow_c',
-                   function(x) scales::rescale_mid(x, to = range, mid = neutral(x, na.rm = TRUE)),
-                   ..., na.value = NA)
+  continuous_scale(
+    'brow',
+    'brow_c',
+    function(x) {
+      scales::rescale_mid(x, to = range, mid = neutral(x, na.rm = TRUE))
+    },
+    ...,
+    na.value = NA
+  )
 }
 
 #' @rdname scale_brow
