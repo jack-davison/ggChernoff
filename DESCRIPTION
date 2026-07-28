@@ -10,8 +10,9 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
-    ggplot2 (>= 3.5.0),
+    ggplot2 (>= 4.0.0),
     grid,
+    rlang,
     scales
 URL: https://github.com/Selbosh/ggChernoff
 BugReports: https://github.com/Selbosh/ggChernoff/issues

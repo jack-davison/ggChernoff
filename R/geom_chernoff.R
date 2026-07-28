@@ -54,6 +54,7 @@
 #' A \code{\link[ggplot2:Geom]{Geom}} layer object for use with \code{ggplot2}.
 #'
 #' @import ggplot2
+#' @importFrom rlang %||%
 #' @export geom_chernoff
 geom_chernoff <- function(
   mapping = NULL,
@@ -86,11 +87,11 @@ GeomChernoff <- ggproto(
   ggplot2::Geom,
   required_aes = c("x", "y"),
   default_aes = aes(
-    colour = "black",
-    fill = NA,
+    colour = from_theme(colour %||% ink),
+    fill = from_theme(fill %||% NA),
     size = 4,
     alpha = 1,
-    linewidth = 0.5,
+    linewidth = from_theme(borderwidth),
     smile = 1,
     brow = NA,
     nose = FALSE,
